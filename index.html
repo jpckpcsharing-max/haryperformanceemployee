@@ -734,9 +734,344 @@
   .chart-legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
   .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--mandiri-muted); }
   .legend-dot { width: 10px; height: 10px; border-radius: 3px; }
+
+  /* ===== LOGIN PAGE ===== */
+  #login-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: linear-gradient(135deg, var(--mandiri-dark) 0%, #0E2044 60%, #0A1628 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  #login-screen::before {
+    content: '';
+    position: absolute;
+    top: -100px; left: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(245,166,35,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  #login-screen::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; right: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(0,81,181,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .login-card {
+    background: white;
+    border-radius: 24px;
+    padding: 44px 48px;
+    width: 440px;
+    max-width: 95vw;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.4);
+    position: relative;
+    z-index: 1;
+    animation: loginIn 0.5s cubic-bezier(0.34,1.56,0.64,1);
+  }
+
+  @keyframes loginIn {
+    from { opacity: 0; transform: scale(0.88) translateY(30px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .login-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 32px;
+    gap: 12px;
+  }
+
+  .login-logo-icon {
+    width: 70px; height: 70px;
+    background: linear-gradient(135deg, var(--mandiri-yellow), var(--mandiri-gold));
+    border-radius: 18px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px; font-weight: 800;
+    color: var(--mandiri-dark);
+    box-shadow: 0 8px 24px rgba(245,166,35,0.35);
+  }
+
+  .login-company {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--mandiri-text);
+    text-align: center;
+    letter-spacing: 0.3px;
+  }
+
+  .login-subtitle {
+    font-size: 12px;
+    color: var(--mandiri-muted);
+    text-align: center;
+    margin-top: 2px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+
+  .login-divider {
+    height: 1px;
+    background: var(--mandiri-border);
+    margin: 0 0 28px 0;
+  }
+
+  .login-heading {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--mandiri-text);
+    margin-bottom: 6px;
+  }
+
+  .login-desc {
+    font-size: 12.5px;
+    color: var(--mandiri-muted);
+    margin-bottom: 28px;
+  }
+
+  .login-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+
+  .login-label {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--mandiri-text);
+  }
+
+  .login-input {
+    padding: 12px 16px;
+    border: 1.5px solid var(--mandiri-border);
+    border-radius: 12px;
+    font-size: 14px;
+    color: var(--mandiri-text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: #FAFBFC;
+  }
+
+  .login-input:focus {
+    border-color: var(--mandiri-blue);
+    box-shadow: 0 0 0 3px rgba(0,81,181,0.1);
+    background: white;
+  }
+
+  .login-input.error {
+    border-color: var(--danger);
+    box-shadow: 0 0 0 3px rgba(239,68,68,0.1);
+  }
+
+  .login-error-msg {
+    display: none;
+    background: #FEF2F2;
+    border: 1px solid #FECACA;
+    border-radius: 10px;
+    padding: 11px 16px;
+    font-size: 13px;
+    color: #DC2626;
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+
+  .login-error-msg.show { display: flex; align-items: center; gap: 8px; }
+
+  .login-btn {
+    width: 100%;
+    padding: 13px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--mandiri-blue), #0041A0);
+    color: white;
+    font-size: 14.5px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: all 0.2s;
+    box-shadow: 0 4px 14px rgba(0,81,181,0.35);
+    margin-top: 6px;
+  }
+
+  .login-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(0,81,181,0.45);
+  }
+
+  .login-btn:active { transform: translateY(0); }
+
+  .login-footer {
+    text-align: center;
+    margin-top: 22px;
+    font-size: 11.5px;
+    color: var(--mandiri-muted);
+  }
+
+  .show-pass-btn {
+    position: absolute;
+    right: 14px; top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    color: var(--mandiri-muted);
+    padding: 0;
+  }
+
+  .pass-wrapper { position: relative; }
+
+  /* ===== KONTRAK KERJA ===== */
+  @keyframes blink-warning {
+    0%, 49% { opacity: 1; color: #DC2626; text-shadow: 0 0 8px rgba(220,38,38,0.5); }
+    50%, 100% { opacity: 0.25; color: #DC2626; text-shadow: none; }
+  }
+
+  @keyframes blink-critical {
+    0%, 30% { opacity: 1; color: #7C2D12; background: #FEF2F2; text-shadow: 0 0 12px rgba(220,38,38,0.7); }
+    31%, 100% { opacity: 0.3; color: #DC2626; background: transparent; text-shadow: none; }
+  }
+
+  .blink-warn {
+    animation: blink-warning 1.2s ease-in-out infinite;
+    font-weight: 700;
+  }
+
+  .blink-critical {
+    animation: blink-critical 0.8s ease-in-out infinite;
+    font-weight: 800;
+    border-radius: 4px;
+    padding: 1px 4px;
+  }
+
+  .kontrak-alert-bar {
+    background: linear-gradient(135deg, #FEF2F2, #FFF1F0);
+    border: 2px solid #FECACA;
+    border-left: 5px solid #EF4444;
+    border-radius: 14px;
+    padding: 16px 22px;
+    margin-bottom: 20px;
+    display: none;
+  }
+
+  .kontrak-alert-bar.show { display: block; }
+  .kontrak-alert-title {
+    font-size: 14px; font-weight: 700; color: #991B1B; margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .kontrak-alert-list { display: flex; flex-direction: column; gap: 6px; }
+  .kontrak-alert-item {
+    display: flex; align-items: center; gap: 12px;
+    background: white; border-radius: 8px; padding: 8px 14px;
+    border: 1px solid #FECACA; font-size: 13px;
+  }
+
+  .days-chip {
+    padding: 3px 10px; border-radius: 20px;
+    font-size: 11px; font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .days-chip.urgent { background: #FEF2F2; color: #DC2626; }
+  .days-chip.warning { background: #FFFBEB; color: #D97706; }
+
+  .kontrak-status-aktif { background: #ECFDF5; color: #059669; }
+  .kontrak-status-warning { background: #FFFBEB; color: #D97706; }
+  .kontrak-status-critical { background: #FEF2F2; color: #DC2626; }
+  .kontrak-status-expired { background: #F1F5F9; color: #475569; }
+
+  /* Logout button in sidebar footer */
+  .logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    margin-top: 10px;
+    padding: 9px 12px;
+    border-radius: 8px;
+    background: rgba(239,68,68,0.12);
+    border: 1px solid rgba(239,68,68,0.2);
+    color: #F87171;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: all 0.2s;
+  }
+
+  .logout-btn:hover {
+    background: rgba(239,68,68,0.22);
+    color: #FCA5A5;
+  }
 </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
 <body>
+
+<!-- ===== LOGIN SCREEN ===== -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="login-logo-icon">🏗️</div>
+      <div>
+        <div class="login-company">JAKARTA PRIMA CRANES</div>
+        <div class="login-subtitle">HRD Management System</div>
+      </div>
+    </div>
+    <div class="login-divider"></div>
+
+    <div class="login-heading">Selamat Datang 👋</div>
+    <div class="login-desc">Silakan masuk menggunakan akun HRD Anda</div>
+
+    <div class="login-error-msg" id="login-error">
+      ❌ Username atau Password salah. Silakan coba lagi.
+    </div>
+
+    <div class="login-form-group">
+      <label class="login-label">Username</label>
+      <input
+        type="text"
+        class="login-input"
+        id="login-username"
+        placeholder="Masukkan username"
+        autocomplete="username"
+        onkeydown="if(event.key==='Enter')doLogin()"
+      />
+    </div>
+
+    <div class="login-form-group">
+      <label class="login-label">Password</label>
+      <div class="pass-wrapper">
+        <input
+          type="password"
+          class="login-input"
+          id="login-password"
+          placeholder="Masukkan password"
+          autocomplete="current-password"
+          style="width:100%;padding-right:44px"
+          onkeydown="if(event.key==='Enter')doLogin()"
+        />
+        <button class="show-pass-btn" onclick="togglePass()" title="Tampilkan/Sembunyikan">👁️</button>
+      </div>
+    </div>
+
+    <button class="login-btn" onclick="doLogin()">🔓 Masuk ke Sistem</button>
+
+    <div class="login-footer">
+      © 2025 Jakarta Prima Cranes · HRD System v1.0
+    </div>
+  </div>
+</div>
 
 <!-- SIDEBAR -->
 <nav class="sidebar" id="sidebar">
@@ -773,6 +1108,10 @@
         <span class="nav-icon">⚠️</span> Surat Peringatan
         <span class="nav-badge" id="badge-sp">0</span>
       </div>
+      <div class="nav-item" onclick="showPage('kontrak')">
+        <span class="nav-icon">📄</span> Kontrak Kerja
+        <span class="nav-badge" id="badge-kontrak" style="background:#EF4444;color:white;display:none">0</span>
+      </div>
     </div>
 
     <div class="nav-section">
@@ -782,6 +1121,9 @@
       </div>
       <div class="nav-item" onclick="showPage('laporan')">
         <span class="nav-icon">📋</span> Laporan
+      </div>
+      <div class="nav-item" onclick="showPage('export')">
+        <span class="nav-icon">📊</span> Export Excel
       </div>
     </div>
 
@@ -795,12 +1137,13 @@
 
   <div class="sidebar-footer">
     <div class="user-card">
-      <div class="user-avatar">AD</div>
+      <div class="user-avatar">JPC</div>
       <div class="user-info">
-        <div class="name">Admin HRD</div>
-        <div class="role">Super Administrator</div>
+        <div class="name">JAKARTA PRIMA CRANES</div>
+        <div class="role">Administrator HRD</div>
       </div>
     </div>
+    <button class="logout-btn" onclick="doLogout()">🚪 Keluar / Logout</button>
   </div>
 </nav>
 
@@ -854,6 +1197,12 @@
           <div class="stat-label">Surat Peringatan</div>
           <div class="stat-change" id="stat-sp-change">— Belum ada SP</div>
         </div>
+      </div>
+
+      <!-- KONTRAK ALERT BAR -->
+      <div class="kontrak-alert-bar" id="kontrak-alert-bar">
+        <div class="kontrak-alert-title">🚨 Peringatan Kontrak Kerja Akan Berakhir!</div>
+        <div class="kontrak-alert-list" id="kontrak-alert-list"></div>
       </div>
 
       <div class="grid-7-5">
@@ -934,6 +1283,7 @@
         </div>
         <div style="display:flex;gap:10px;align-items:center;">
           <button class="btn btn-primary" onclick="openModal('modal-tambah-karyawan')">➕ Tambah Karyawan</button>
+          <button class="btn btn-outline" onclick="downloadExcel('karyawan')" style="border-color:#16A34A;color:#16A34A;">📥 Download Excel</button>
           <select class="form-control" id="filter-dept" onchange="filterKaryawan()" style="width:200px">
             <option value="">Semua Departemen</option>
             <option>Produksi</option>
@@ -976,9 +1326,10 @@
     <div class="page" id="page-absensi">
       <div class="section-header">
         <div class="section-title">🏥 Absensi Sakit dengan Surat Dokter</div>
-        <button class="btn btn-primary" onclick="openModal('modal-absensi')">
-          ➕ Tambah Data Absensi
-        </button>
+        <div style="display:flex;gap:10px;">
+          <button class="btn btn-outline" onclick="downloadExcel('absensi')" style="border-color:#16A34A;color:#16A34A;">📥 Download Excel</button>
+          <button class="btn btn-primary" onclick="openModal('modal-absensi')">➕ Tambah Data Absensi</button>
+        </div>
       </div>
 
       <div class="card" style="margin-bottom:20px">
@@ -1032,9 +1383,10 @@
     <div class="page" id="page-training">
       <div class="section-header">
         <div class="section-title">🎓 Daftar Training Karyawan</div>
-        <button class="btn btn-primary" onclick="openModal('modal-training')">
-          ➕ Tambah Data Training
-        </button>
+        <div style="display:flex;gap:10px;">
+          <button class="btn btn-outline" onclick="downloadExcel('training')" style="border-color:#16A34A;color:#16A34A;">📥 Download Excel</button>
+          <button class="btn btn-primary" onclick="openModal('modal-training')">➕ Tambah Data Training</button>
+        </div>
       </div>
 
       <div class="card" style="margin-bottom:20px">
@@ -1084,9 +1436,10 @@
     <div class="page" id="page-sp">
       <div class="section-header">
         <div class="section-title">⚠️ Surat Peringatan (SP)</div>
-        <button class="btn btn-primary" onclick="openModal('modal-sp')">
-          ➕ Tambah SP
-        </button>
+        <div style="display:flex;gap:10px;">
+          <button class="btn btn-outline" onclick="downloadExcel('sp')" style="border-color:#16A34A;color:#16A34A;">📥 Download Excel</button>
+          <button class="btn btn-primary" onclick="openModal('modal-sp')">➕ Tambah SP</button>
+        </div>
       </div>
 
       <div class="card" style="margin-bottom:20px">
@@ -1226,6 +1579,134 @@
           <div class="chart-container">
             <canvas id="chartLaporan"></canvas>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======= EXPORT EXCEL ======= -->
+    <div class="page" id="page-export">
+      <div class="card" style="margin-bottom:20px">
+        <div class="card-header">
+          <div>
+            <div class="card-title">📊 Export Data ke Excel</div>
+            <div class="card-subtitle">Download data dalam format .xlsx siap pakai</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="grid-3" style="margin-bottom:20px">
+
+            <div style="background:#EFF6FF;border:2px solid #BFDBFE;border-radius:14px;padding:24px;text-align:center;cursor:pointer;transition:all 0.2s" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'" onclick="exportExcel('karyawan')">
+              <div style="font-size:36px;margin-bottom:10px">👥</div>
+              <div style="font-weight:700;font-size:16px;color:#1E40AF;margin-bottom:6px">Data Karyawan</div>
+              <div style="font-size:12px;color:#6B7280;margin-bottom:14px">Semua data karyawan aktif</div>
+              <button class="btn btn-primary" style="width:100%;pointer-events:none">⬇️ Download Excel</button>
+            </div>
+
+            <div style="background:#F0FDF4;border:2px solid #BBF7D0;border-radius:14px;padding:24px;text-align:center;cursor:pointer;transition:all 0.2s" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'" onclick="exportExcel('absensi')">
+              <div style="font-size:36px;margin-bottom:10px">🏥</div>
+              <div style="font-weight:700;font-size:16px;color:#166534;margin-bottom:6px">Absensi Sakit</div>
+              <div style="font-size:12px;color:#6B7280;margin-bottom:14px">Rekap absensi sakit karyawan</div>
+              <button class="btn" style="width:100%;background:#22C55E;color:white;border:none;border-radius:8px;padding:10px;font-weight:600;pointer-events:none">⬇️ Download Excel</button>
+            </div>
+
+            <div style="background:#FFF7ED;border:2px solid #FED7AA;border-radius:14px;padding:24px;text-align:center;cursor:pointer;transition:all 0.2s" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'" onclick="exportExcel('training')">
+              <div style="font-size:36px;margin-bottom:10px">🎓</div>
+              <div style="font-weight:700;font-size:16px;color:#92400E;margin-bottom:6px">Daftar Training</div>
+              <div style="font-size:12px;color:#6B7280;margin-bottom:14px">Rekap training & sertifikasi</div>
+              <button class="btn" style="width:100%;background:#F97316;color:white;border:none;border-radius:8px;padding:10px;font-weight:600;pointer-events:none">⬇️ Download Excel</button>
+            </div>
+
+            <div style="background:#FEF2F2;border:2px solid #FECACA;border-radius:14px;padding:24px;text-align:center;cursor:pointer;transition:all 0.2s" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'" onclick="exportExcel('sp')">
+              <div style="font-size:36px;margin-bottom:10px">⚠️</div>
+              <div style="font-weight:700;font-size:16px;color:#991B1B;margin-bottom:6px">Surat Peringatan</div>
+              <div style="font-size:12px;color:#6B7280;margin-bottom:14px">Rekap SP karyawan</div>
+              <button class="btn" style="width:100%;background:#EF4444;color:white;border:none;border-radius:8px;padding:10px;font-weight:600;pointer-events:none">⬇️ Download Excel</button>
+            </div>
+
+            <div style="background:#FAF5FF;border:2px solid #E9D5FF;border-radius:14px;padding:24px;text-align:center;cursor:pointer;transition:all 0.2s" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'" onclick="exportExcelAll()">
+              <div style="font-size:36px;margin-bottom:10px">📦</div>
+              <div style="font-weight:700;font-size:16px;color:#6D28D9;margin-bottom:6px">Semua Data</div>
+              <div style="font-size:12px;color:#6B7280;margin-bottom:14px">Export semua sheet sekaligus</div>
+              <button class="btn" style="width:100%;background:#7C3AED;color:white;border:none;border-radius:8px;padding:10px;font-weight:600;pointer-events:none">⬇️ Download Excel</button>
+            </div>
+
+          </div>
+
+          <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:16px">
+            <div style="font-size:13px;color:#64748B;line-height:1.8">
+              💡 <strong>Info:</strong> File Excel akan otomatis terformat dengan header berwarna dan kolom yang rapi.
+              File <strong>"Semua Data"</strong> berisi 4 sheet: Karyawan, Absensi, Training, dan Surat Peringatan dalam 1 file.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======= KONTRAK KERJA ======= -->
+    <div class="page" id="page-kontrak">
+      <div class="section-header">
+        <div class="section-title">📄 Kontrak Kerja Karyawan</div>
+        <div style="display:flex;gap:10px;">
+          <button class="btn btn-outline" onclick="downloadExcel('kontrak')" style="border-color:#16A34A;color:#16A34A;">📥 Download Excel</button>
+          <button class="btn btn-primary" onclick="openModal('modal-kontrak')">➕ Tambah Kontrak</button>
+        </div>
+      </div>
+
+      <!-- Alert kontrak akan berakhir -->
+      <div class="kontrak-alert-bar" id="kontrak-page-alert-bar" style="margin-bottom:20px">
+        <div class="kontrak-alert-title">🚨 Kontrak Kerja Akan Berakhir dalam 30 Hari!</div>
+        <div class="kontrak-alert-list" id="kontrak-page-alert-list"></div>
+      </div>
+
+      <div class="card" style="margin-bottom:20px">
+        <div class="card-body" style="padding:20px">
+          <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;">
+            <div class="search-wrap" style="flex:1;min-width:250px;">
+              <span class="search-icon">🔍</span>
+              <input type="text" class="form-control" id="search-kontrak" placeholder="Cari nama karyawan..." oninput="filterKontrak()">
+            </div>
+            <select class="form-control" id="filter-kontrak-dept" onchange="filterKontrak()" style="width:190px">
+              <option value="">Semua Departemen</option>
+              <option>Produksi</option><option>HSE</option>
+              <option>Maintenance A2B</option><option>Management</option><option>Plant</option>
+            </select>
+            <select class="form-control" id="filter-kontrak-status" onchange="filterKontrak()" style="width:170px">
+              <option value="">Semua Status</option>
+              <option value="aktif">Aktif</option>
+              <option value="warning">Hampir Berakhir</option>
+              <option value="expired">Sudah Berakhir</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">📋 Daftar Kontrak Kerja</div>
+            <div class="card-subtitle" id="kontrak-count">Total: 0 kontrak</div>
+          </div>
+          <span class="badge badge-blue" id="kontrak-expiring-badge" style="display:none">⚠️ 0 hampir berakhir</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>KARYAWAN</th>
+                <th>DEPARTEMEN</th>
+                <th>JENIS KONTRAK</th>
+                <th>TGL MULAI</th>
+                <th>TGL BERAKHIR</th>
+                <th>SISA HARI</th>
+                <th>STATUS</th>
+                <th>AKSI</th>
+              </tr>
+            </thead>
+            <tbody id="tabel-kontrak">
+              <tr><td colspan="9"><div class="empty-state"><div class="empty-icon">📄</div><div class="empty-text">Belum ada data kontrak. Klik "Tambah Kontrak" untuk memulai.</div></div></td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -1490,6 +1971,60 @@
   </div>
 </div>
 
+<!-- Modal Kontrak Kerja -->
+<div class="modal-overlay" id="modal-kontrak">
+  <div class="modal" style="max-width:620px">
+    <div class="modal-header">
+      <div class="modal-title">📄 Tambah / Edit Kontrak Kerja</div>
+      <button class="modal-close" onclick="closeModal('modal-kontrak')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Nama Karyawan *</label>
+          <select class="form-control" id="kontrak-nama">
+            <option value="">— Pilih Karyawan —</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Departemen</label>
+          <input type="text" class="form-control" id="kontrak-dept" readonly placeholder="Otomatis terisi">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Jenis Kontrak *</label>
+          <select class="form-control" id="kontrak-jenis">
+            <option value="">— Pilih Jenis —</option>
+            <option>PKWT (Kontrak Tetap)</option>
+            <option>PKWTT (Tidak Tetap)</option>
+            <option>Magang / Probation</option>
+            <option>Perpanjangan Kontrak</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">No. Kontrak</label>
+          <input type="text" class="form-control" id="kontrak-nomor" placeholder="cth: JPC/PKWT/2025/001">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tanggal Mulai *</label>
+          <input type="date" class="form-control" id="kontrak-tgl-mulai">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tanggal Berakhir *</label>
+          <input type="date" class="form-control" id="kontrak-tgl-berakhir">
+        </div>
+        <div class="form-group form-full">
+          <label class="form-label">Catatan</label>
+          <textarea class="form-control" id="kontrak-catatan" placeholder="Catatan tambahan mengenai kontrak..."></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('modal-kontrak')">Batal</button>
+      <button class="btn btn-primary" onclick="simpanKontrak()">💾 Simpan Kontrak</button>
+    </div>
+  </div>
+</div>
+
 <!-- Toast Container -->
 <div class="toast-container" id="toast-container"></div>
 
@@ -1663,6 +2198,7 @@ let appData = {
   absensi: [],
   training: [],
   sp: [],
+  kontrak: [],
   settings: {
     gsSheetId: '',
     gsScriptUrl: '',
@@ -1691,7 +2227,8 @@ const pageTitles = {
   dashboard: 'Dashboard', karyawan: 'Data Karyawan',
   absensi: 'Absensi Sakit', training: 'Daftar Training',
   sp: 'Surat Peringatan', ai: 'Analisa AI',
-  laporan: 'Laporan', settings: 'Pengaturan'
+  laporan: 'Laporan', export: 'Export Excel',
+  kontrak: 'Kontrak Kerja', settings: 'Pengaturan'
 };
 
 function showPage(id) {
@@ -1705,15 +2242,16 @@ function showPage(id) {
   document.getElementById('topbar-breadcrumb').textContent = 'HRD System › ' + pageTitles[id];
 
   if (id === 'karyawan') renderKaryawan();
-  if (id === 'dashboard') renderCharts();
+  if (id === 'dashboard') { renderCharts(); renderKontrakAlert(); }
   if (id === 'laporan') renderLaporan();
+  if (id === 'kontrak') renderKontrak();
 }
 
 // =============================================
 //  POPULATE DROPDOWNS
 // =============================================
 function populateDropdowns() {
-  const selects = ['absensi-nama','training-nama','sp-nama'];
+  const selects = ['absensi-nama','training-nama','sp-nama','kontrak-nama'];
   selects.forEach(id => {
     const sel = document.getElementById(id);
     sel.innerHTML = '<option value="">— Pilih Karyawan —</option>';
@@ -1728,7 +2266,7 @@ function populateDropdowns() {
   });
 
   // Auto-fill dept
-  ['absensi','training','sp'].forEach(prefix => {
+  ['absensi','training','sp','kontrak'].forEach(prefix => {
     document.getElementById(prefix+'-nama').addEventListener('change', function() {
       const opt = this.options[this.selectedIndex];
       document.getElementById(prefix+'-dept').value = opt.dataset.dept || '';
@@ -2234,6 +2772,134 @@ function destroyChart(id) {
   if (charts[id]) { charts[id].destroy(); delete charts[id]; }
 }
 
+
+// =============================================
+//  ANALISA LOKAL (tanpa API Key)
+// =============================================
+function analyzeLocal(type, textEl) {
+  const total   = KARYAWAN_DATA.length;
+  const produksi  = KARYAWAN_DATA.filter(k=>k.dept==='Produksi').length;
+  const hse       = KARYAWAN_DATA.filter(k=>k.dept==='HSE').length;
+  const maint     = KARYAWAN_DATA.filter(k=>k.dept==='Maintenance A2B').length;
+  const mgmt      = KARYAWAN_DATA.filter(k=>k.dept==='Management').length;
+  const plant     = KARYAWAN_DATA.filter(k=>k.dept==='Plant').length;
+
+  const absTotal  = appData.absensi.length;
+  const absDept   = appData.absensi.reduce((a,d)=>{a[d.dept]=(a[d.dept]||0)+1;return a;},{});
+  const absTeratas = Object.entries(absDept).sort((a,b)=>b[1]-a[1])[0];
+
+  const trainTotal  = appData.training.length;
+  const trainSelesai= appData.training.filter(t=>t.status==='Selesai').length;
+  const trainOngoing= appData.training.filter(t=>t.status==='Berlangsung').length;
+
+  const spTotal = appData.sp.length;
+  const sp1 = appData.sp.filter(s=>s.level==='SP 1').length;
+  const sp2 = appData.sp.filter(s=>s.level==='SP 2').length;
+  const sp3 = appData.sp.filter(s=>s.level==='SP 3').length;
+  const spDept = appData.sp.reduce((a,d)=>{a[d.dept]=(a[d.dept]||0)+1;return a;},{});
+  const spTeratas = Object.entries(spDept).sort((a,b)=>b[1]-a[1])[0];
+
+  const absRatio = total > 0 ? ((absTotal/total)*100).toFixed(1) : 0;
+
+  const hasil = {
+    summary: `
+<strong style="color:#F5A623;font-size:15px">📊 ANALISIS KESELURUHAN HRD — PT Jakarta Prima Cranes</strong><br><br>
+<strong style="color:#60A5FA">👥 DATA KARYAWAN</strong><br>
+• Total karyawan aktif: <strong>${total} orang</strong><br>
+• Produksi: ${produksi} | Maintenance A2B: ${maint} | Plant: ${plant} | HSE: ${hse} | Management: ${mgmt}<br><br>
+<strong style="color:#60A5FA">🏥 ABSENSI SAKIT</strong><br>
+• Total kasus: <strong>${absTotal} kasus</strong> (${absRatio}% dari total karyawan)<br>
+• ${absTeratas ? 'Departemen tertinggi: <strong>'+absTeratas[0]+'</strong> ('+absTeratas[1]+' kasus)' : 'Belum ada data absensi'}<br><br>
+<strong style="color:#60A5FA">🎓 TRAINING</strong><br>
+• Total training: <strong>${trainTotal}</strong> | Selesai: ${trainSelesai} | Berlangsung: ${trainOngoing}<br>
+• Coverage training: ${total > 0 ? ((trainTotal/total)*100).toFixed(1) : 0}% dari total karyawan<br><br>
+<strong style="color:#60A5FA">⚠️ SURAT PERINGATAN</strong><br>
+• Total SP: <strong>${spTotal}</strong> | SP1: ${sp1} | SP2: ${sp2} | SP3: ${sp3}<br>
+• ${spTeratas ? 'Departemen tertinggi: <strong>'+spTeratas[0]+'</strong> ('+spTeratas[1]+' SP)' : 'Belum ada data SP'}<br><br>
+<strong style="color:#34D399">✅ REKOMENDASI</strong><br>
+• ${absTotal > total*0.1 ? '⚠️ Tingkat absensi perlu perhatian, pertimbangkan program kesehatan.' : '✅ Tingkat absensi dalam batas wajar.'}<br>
+• ${trainTotal < total*0.5 ? '⚠️ Coverage training masih rendah, percepat program pelatihan.' : '✅ Program training berjalan baik.'}<br>
+• ${sp3 > 0 ? '🔴 Ada '+sp3+' karyawan dengan SP3, tindak lanjut segera diperlukan.' : '✅ Tidak ada SP3 aktif.'}
+`,
+    absensi: `
+<strong style="color:#F5A623;font-size:15px">🏥 ANALISIS ABSENSI SAKIT</strong><br><br>
+<strong style="color:#60A5FA">📈 STATISTIK ABSENSI</strong><br>
+• Total kasus absensi: <strong>${absTotal} kasus</strong><br>
+• Rasio terhadap total karyawan: <strong>${absRatio}%</strong><br>
+• ${absTeratas ? 'Departemen tertinggi: <strong>'+absTeratas[0]+'</strong> ('+absTeratas[1]+' kasus)' : 'Belum ada data absensi untuk dianalisis.'}<br><br>
+${absTotal > 0 ? `<strong style="color:#60A5FA">📋 DISTRIBUSI PER DEPARTEMEN</strong><br>
+${Object.entries(absDept).map(([d,n])=>`• ${d}: <strong>${n} kasus</strong> (${((n/absTotal)*100).toFixed(1)}%)`).join('<br>')}<br><br>
+<strong style="color:#34D399">✅ REKOMENDASI</strong><br>
+• ${absTeratas && absTeratas[1] > 3 ? '⚠️ Dept <strong>'+absTeratas[0]+'</strong> perlu program kesehatan khusus.' : '✅ Distribusi absensi relatif merata.'}<br>
+• Lakukan medical check-up rutin untuk karyawan area produksi.<br>
+• Pantau pola absensi bulanan untuk deteksi dini masalah kesehatan.` : '📭 Belum ada data absensi yang tercatat.'}
+`,
+    training: `
+<strong style="color:#F5A623;font-size:15px">🎓 REKOMENDASI & ANALISIS TRAINING</strong><br><br>
+<strong style="color:#60A5FA">📈 STATISTIK TRAINING</strong><br>
+• Total data training: <strong>${trainTotal}</strong><br>
+• Selesai: <strong>${trainSelesai}</strong> | Berlangsung: <strong>${trainOngoing}</strong> | Terjadwal: <strong>${appData.training.filter(t=>t.status==='Terjadwal').length}</strong><br>
+• Coverage: <strong>${total > 0 ? ((trainTotal/total)*100).toFixed(1) : 0}%</strong> dari total karyawan<br><br>
+<strong style="color:#34D399">✅ REKOMENDASI PROGRAM TRAINING</strong><br>
+• ${produksi > 0 ? '🔧 <strong>Produksi ('+produksi+' org):</strong> K3 & SOP Operasional, Sertifikasi Operator Alat Berat' : ''}<br>
+• ${hse > 0 ? '🦺 <strong>HSE ('+hse+' org):</strong> Safety Leadership, OHSAS 18001, Investigasi Kecelakaan' : ''}<br>
+• ${maint > 0 ? '⚙️ <strong>Maintenance A2B ('+maint+' org):</strong> Perawatan Crane & Peralatan, Troubleshooting' : ''}<br>
+• ${mgmt > 0 ? '👔 <strong>Management ('+mgmt+' org):</strong> Leadership, HR Management, KPI & Performance' : ''}<br>
+• ${plant > 0 ? '🏭 <strong>Plant ('+plant+' org):</strong> Teknis Plant, Keselamatan Kerja, Efisiensi Operasional' : ''}<br>
+• ${trainTotal < total*0.5 ? '<br>⚠️ Coverage training masih <strong>'+((trainTotal/total)*100).toFixed(1)+'%</strong> — targetkan minimal 80%.' : '<br>✅ Coverage training sudah baik, pertahankan.'}
+`,
+    sp: `
+<strong style="color:#F5A623;font-size:15px">⚠️ ANALISIS SURAT PERINGATAN & PELANGGARAN</strong><br><br>
+<strong style="color:#60A5FA">📈 STATISTIK SP</strong><br>
+• Total SP diterbitkan: <strong>${spTotal}</strong><br>
+• SP 1: <strong>${sp1}</strong> | SP 2: <strong>${sp2}</strong> | SP 3: <strong>${sp3}</strong><br>
+• ${spTeratas ? 'Departemen tertinggi: <strong>'+spTeratas[0]+'</strong> ('+spTeratas[1]+' SP)' : 'Belum ada data SP.'}<br><br>
+${spTotal > 0 ? `<strong style="color:#60A5FA">📋 DISTRIBUSI SP PER DEPARTEMEN</strong><br>
+${Object.entries(spDept).map(([d,n])=>`• ${d}: <strong>${n} SP</strong>`).join('<br>')}<br><br>` : ''}
+<strong style="color:#34D399">✅ REKOMENDASI TINDAKAN</strong><br>
+${sp3 > 0 ? '🔴 <strong>PRIORITAS TINGGI:</strong> Ada <strong>'+sp3+' karyawan</strong> dengan SP3 — review segera untuk tindak lanjut PHK atau pembinaan intensif.<br>' : ''}
+${sp2 > 0 ? '🟠 Ada <strong>'+sp2+' karyawan</strong> SP2 — lakukan konseling dan monitoring ketat.<br>' : ''}
+${sp1 > 0 ? '🟡 Ada <strong>'+sp1+' karyawan</strong> SP1 — jadwalkan pembinaan & coaching.<br>' : ''}
+${spTotal === 0 ? '✅ Tidak ada surat peringatan aktif. Kondisi disiplin karyawan baik.' : '• Lakukan root cause analysis untuk pola pelanggaran berulang.'}
+`,
+    risiko: `
+<strong style="color:#F5A623;font-size:15px">🔴 IDENTIFIKASI RISIKO SDM</strong><br><br>
+<strong style="color:#60A5FA">📊 RISK ASSESSMENT</strong><br><br>
+${sp3 > 0 ? `🔴 <strong>RISIKO TINGGI</strong><br>• ${sp3} karyawan dengan SP3 — potensi pemutusan hubungan kerja.<br><br>` : ''}
+${sp2 > 0 ? `🟠 <strong>RISIKO SEDANG</strong><br>• ${sp2} karyawan dengan SP2 — perlu monitoring ketat dan intervensi HRD.<br><br>` : ''}
+${absRatio > 10 ? `🟠 <strong>RISIKO KESEHATAN</strong><br>• Tingkat absensi ${absRatio}% — di atas ambang batas normal (10%).<br><br>` : `🟢 <strong>RISIKO KESEHATAN: RENDAH</strong><br>• Tingkat absensi ${absRatio}% — dalam batas normal.<br><br>`}
+${trainTotal < total*0.3 ? `🟠 <strong>RISIKO KOMPETENSI</strong><br>• Coverage training hanya ${((trainTotal/total)*100).toFixed(1)}% — gap kompetensi berpotensi mengganggu operasional.<br><br>` : `🟢 <strong>RISIKO KOMPETENSI: TERKENDALI</strong><br>• Coverage training ${((trainTotal/total)*100).toFixed(1)}%.<br><br>`}
+<strong style="color:#34D399">🛡️ MITIGASI RISIKO</strong><br>
+• Intensifkan program K3 untuk area risiko tinggi (Produksi & Maintenance).<br>
+• Lakukan employee engagement survey untuk deteksi dini ketidakpuasan.<br>
+• Percepat program sertifikasi untuk karyawan yang belum terlatih.<br>
+• Review dan update SOP disiplin karyawan secara berkala.
+`
+  };
+
+  textEl.innerHTML = hasil[type] || hasil.summary;
+
+  // Update insight panel
+  document.getElementById('ai-insights-panel').innerHTML = `
+    <div style="padding:14px;background:#EFF6FF;border-radius:10px;border-left:3px solid #0051B5;margin-bottom:12px">
+      <div style="font-size:12px;font-weight:700;color:#0051B5;margin-bottom:4px">Analisis Terakhir</div>
+      <div style="font-size:12.5px;color:#334155">${new Date().toLocaleString('id-ID')}</div>
+    </div>
+    <div style="font-size:12.5px;line-height:1.7;color:#334155">
+      👥 Karyawan: <strong>${total}</strong> | 🏥 Absensi: <strong>${absTotal}</strong> | 🎓 Training: <strong>${trainTotal}</strong> | ⚠️ SP: <strong>${spTotal}</strong>
+    </div>
+  `;
+
+  document.getElementById('ai-recommendations').innerHTML = `
+    <div style="font-size:13px;line-height:1.9;color:#334155">
+      ${sp3>0 ? '<div style="padding:8px 12px;background:#FEF2F2;border-radius:8px;margin-bottom:8px;border-left:3px solid #EF4444">🔴 Tindak lanjut <strong>'+sp3+' karyawan SP3</strong> segera</div>' : ''}
+      ${trainTotal<total*0.5 ? '<div style="padding:8px 12px;background:#FFFBEB;border-radius:8px;margin-bottom:8px;border-left:3px solid #F59E0B">🟠 Tingkatkan coverage training ke minimal 80%</div>' : ''}
+      ${absRatio>10 ? '<div style="padding:8px 12px;background:#FEF2F2;border-radius:8px;margin-bottom:8px;border-left:3px solid #F97316">🟠 Program kesehatan karyawan perlu diperkuat</div>' : ''}
+      <div style="padding:8px 12px;background:#F0FDF4;border-radius:8px;margin-bottom:8px;border-left:3px solid #22C55E">✅ Lakukan review HRD bulanan rutin</div>
+    </div>
+  `;
+}
+
 // =============================================
 //  AI ANALISA
 // =============================================
@@ -2268,15 +2934,8 @@ DATA HRD PT. BPN Mining:
 
   if (!apiKey) {
     loadEl.style.display = 'none';
-    textEl.innerHTML = `<div style="color:#F5A623">⚠️ <strong>API Key belum diisi.</strong> Masuk ke menu <strong>Pengaturan</strong> dan tambahkan Anthropic API Key untuk mengaktifkan fitur AI.</div><br>
-    <div style="color:rgba(255,255,255,0.7);line-height:1.8">
-    📊 <strong>Ringkasan Data Saat Ini:</strong><br>
-    • Total karyawan aktif: <strong>${KARYAWAN_DATA.length} orang</strong><br>
-    • Absensi sakit: <strong>${appData.absensi.length} kasus</strong> tercatat<br>
-    • Training: <strong>${appData.training.length} data</strong> training<br>
-    • Surat Peringatan: <strong>${appData.sp.length} SP</strong> diterbitkan<br>
-    • Dept terbanyak: <strong>Produksi</strong> dengan ${KARYAWAN_DATA.filter(k=>k.dept==='Produksi').length} karyawan
-    </div>`;
+    // Tanpa API Key: tampilkan analisa manual berbasis data
+    analyzeLocal(type, textEl);
     return;
   }
 
@@ -2468,6 +3127,112 @@ function appendData(ss, type, data) {
 // =============================================
 //  EXPORT
 // =============================================
+
+// =============================================
+//  EXPORT EXCEL (SheetJS)
+// =============================================
+function exportExcel(type) {
+  const wb = XLSX.utils.book_new();
+  const today = new Date().toISOString().split('T')[0];
+  const companyName = 'PT Jakarta Prima Cranes';
+
+  const configs = {
+    karyawan: {
+      title: 'Data Karyawan',
+      headers: ['No','No Registrasi','Nama','Jabatan','Departemen'],
+      rows: KARYAWAN_DATA.map((k,i) => [i+1, k.no, k.nama, k.jabatan, k.dept])
+    },
+    absensi: {
+      title: 'Absensi Sakit',
+      headers: ['No','Nama','Departemen','Tgl Mulai','Tgl Selesai','Durasi (hari)','Diagnosa','Dokter','Klinik','No Surat'],
+      rows: appData.absensi.map((d,i) => [i+1, d.nama,d.dept,d.tglMulai,d.tglSelesai,d.durasi,d.diagnosa,d.dokter,d.klinik||'-',d.noSurat])
+    },
+    training: {
+      title: 'Daftar Training',
+      headers: ['No','Nama','Departemen','Jenis Training','Tgl Mulai','Tgl Selesai','Penyelenggara','Lokasi','Status','No Sertifikat','Expired'],
+      rows: appData.training.map((d,i) => [i+1, d.nama,d.dept,d.jenis,d.tglMulai,d.tglSelesai,d.penyelenggara,d.lokasi||'-',d.status,d.sertifikat||'-',d.expired||'-'])
+    },
+    sp: {
+      title: 'Surat Peringatan',
+      headers: ['No','Nama','Departemen','Tanggal','Level SP','Alasan','Berlaku Sampai','No SP'],
+      rows: appData.sp.map((d,i) => [i+1, d.nama,d.dept,d.tanggal,d.level,d.alasan,d.berlaku,d.nomor])
+    }
+  };
+
+  const cfg = configs[type];
+  if (!cfg) return;
+  if (type !== 'karyawan' && !appData[type].length) {
+    showToast('Tidak ada data ' + cfg.title + ' untuk di-export!', 'error'); return;
+  }
+
+  // Baris judul
+  const titleRow  = [companyName];
+  const subRow    = ['Laporan ' + cfg.title + ' | Tanggal: ' + today];
+  const emptyRow  = [''];
+
+  const wsData = [titleRow, subRow, emptyRow, cfg.headers, ...cfg.rows];
+  const ws = XLSX.utils.aoa_to_sheet(wsData);
+
+  // Style lebar kolom otomatis
+  const colWidths = cfg.headers.map((h, i) => {
+    const maxLen = Math.max(h.length, ...cfg.rows.map(r => String(r[i]||'').length));
+    return { wch: Math.min(maxLen + 4, 40) };
+  });
+  ws['!cols'] = colWidths;
+
+  // Merge baris judul
+  ws['!merges'] = [
+    { s:{r:0,c:0}, e:{r:0,c:cfg.headers.length-1} },
+    { s:{r:1,c:0}, e:{r:1,c:cfg.headers.length-1} }
+  ];
+
+  XLSX.utils.book_append_sheet(wb, ws, cfg.title);
+  XLSX.writeFile(wb, 'HRD_' + cfg.title.replace(/ /g,'_') + '_' + today + '.xlsx');
+  showToast('✅ Excel ' + cfg.title + ' berhasil didownload!', 'success');
+}
+
+function exportExcelAll() {
+  const wb = XLSX.utils.book_new();
+  const today = new Date().toISOString().split('T')[0];
+  const companyName = 'PT Jakarta Prima Cranes';
+
+  const sheets = [
+    {
+      name: 'Karyawan',
+      headers: ['No','No Registrasi','Nama','Jabatan','Departemen'],
+      rows: KARYAWAN_DATA.map((k,i) => [i+1, k.no, k.nama, k.jabatan, k.dept])
+    },
+    {
+      name: 'Absensi Sakit',
+      headers: ['No','Nama','Departemen','Tgl Mulai','Tgl Selesai','Durasi','Diagnosa','Dokter','Klinik','No Surat'],
+      rows: appData.absensi.map((d,i) => [i+1, d.nama,d.dept,d.tglMulai,d.tglSelesai,d.durasi,d.diagnosa,d.dokter,d.klinik||'-',d.noSurat])
+    },
+    {
+      name: 'Training',
+      headers: ['No','Nama','Departemen','Jenis','Tgl Mulai','Tgl Selesai','Penyelenggara','Lokasi','Status','Sertifikat','Expired'],
+      rows: appData.training.map((d,i) => [i+1, d.nama,d.dept,d.jenis,d.tglMulai,d.tglSelesai,d.penyelenggara,d.lokasi||'-',d.status,d.sertifikat||'-',d.expired||'-'])
+    },
+    {
+      name: 'Surat Peringatan',
+      headers: ['No','Nama','Departemen','Tanggal','Level SP','Alasan','Berlaku Sampai','No SP'],
+      rows: appData.sp.map((d,i) => [i+1, d.nama,d.dept,d.tanggal,d.level,d.alasan,d.berlaku,d.nomor])
+    }
+  ];
+
+  sheets.forEach(s => {
+    const titleRow = [companyName];
+    const subRow   = ['Laporan ' + s.name + ' | Tanggal: ' + today];
+    const wsData   = [titleRow, subRow, [''], s.headers, ...s.rows];
+    const ws       = XLSX.utils.aoa_to_sheet(wsData);
+    ws['!cols']    = s.headers.map((h,i) => ({ wch: Math.min(Math.max(h.length, ...s.rows.map(r=>String(r[i]||'').length)) + 4, 40) }));
+    ws['!merges']  = [{ s:{r:0,c:0}, e:{r:0,c:s.headers.length-1} }, { s:{r:1,c:0}, e:{r:1,c:s.headers.length-1} }];
+    XLSX.utils.book_append_sheet(wb, ws, s.name);
+  });
+
+  XLSX.writeFile(wb, 'HRD_JPC_Semua_Data_' + today + '.xlsx');
+  showToast('✅ Excel semua data berhasil didownload!', 'success');
+}
+
 function exportData(type) {
   const data = appData[type];
   if (!data.length) { showToast('Tidak ada data untuk di-export!', 'error'); return; }
@@ -2578,6 +3343,345 @@ function resetForm(ids) {
 }
 
 
+
+// =============================================
+//  KONTRAK KERJA
+// =============================================
+function hitungSisaHari(tglBerakhir) {
+  const today = new Date(); today.setHours(0,0,0,0);
+  const end   = new Date(tglBerakhir); end.setHours(0,0,0,0);
+  return Math.ceil((end - today) / (1000 * 60 * 60 * 24));
+}
+
+function getKontrakStatus(sisa) {
+  if (sisa < 0)   return { label: 'Berakhir', cls: 'badge kontrak-status-expired' };
+  if (sisa <= 14) return { label: 'Kritis!',  cls: 'badge kontrak-status-critical' };
+  if (sisa <= 30) return { label: 'Hampir Berakhir', cls: 'badge kontrak-status-warning' };
+  return { label: 'Aktif', cls: 'badge kontrak-status-aktif' };
+}
+
+function simpanKontrak() {
+  const nama      = document.getElementById('kontrak-nama').value;
+  const dept      = document.getElementById('kontrak-dept').value;
+  const jenis     = document.getElementById('kontrak-jenis').value;
+  const nomor     = document.getElementById('kontrak-nomor').value.trim();
+  const tglMulai  = document.getElementById('kontrak-tgl-mulai').value;
+  const tglAkhir  = document.getElementById('kontrak-tgl-berakhir').value;
+  const catatan   = document.getElementById('kontrak-catatan').value.trim();
+
+  if (!nama || !jenis || !tglMulai || !tglAkhir) {
+    showToast('⚠️ Harap isi field wajib (Nama, Jenis, Tanggal)!', 'error'); return;
+  }
+  if (tglAkhir <= tglMulai) {
+    showToast('⚠️ Tanggal Berakhir harus setelah Tanggal Mulai!', 'error'); return;
+  }
+
+  const id = Date.now().toString();
+  appData.kontrak.push({ id, nama, dept, jenis, nomor, tglMulai, tglAkhir, catatan });
+  saveData();
+  closeModal('modal-kontrak');
+  renderKontrak();
+  renderKontrakAlert();
+  updateBadgeKontrak();
+
+  // Reset form
+  ['kontrak-nama','kontrak-dept','kontrak-jenis','kontrak-nomor','kontrak-tgl-mulai','kontrak-tgl-berakhir','kontrak-catatan']
+    .forEach(id => { const el = document.getElementById(id); if(el) el.value = ''; });
+
+  showToast('✅ Kontrak ' + nama + ' berhasil disimpan!', 'success');
+}
+
+function hapusKontrak(id) {
+  const k = appData.kontrak.find(x => x.id === id);
+  if (!k) return;
+  if (!confirm('Hapus kontrak ' + k.nama + '?')) return;
+  appData.kontrak = appData.kontrak.filter(x => x.id !== id);
+  saveData();
+  renderKontrak();
+  renderKontrakAlert();
+  updateBadgeKontrak();
+  showToast('🗑️ Kontrak berhasil dihapus.', 'success');
+}
+
+function renderKontrak(data) {
+  const list = data || appData.kontrak;
+  const tbody = document.getElementById('tabel-kontrak');
+  const countEl = document.getElementById('kontrak-count');
+  const expiringBadge = document.getElementById('kontrak-expiring-badge');
+
+  if (!list.length) {
+    tbody.innerHTML = `<tr><td colspan="9"><div class="empty-state"><div class="empty-icon">📄</div><div class="empty-text">Belum ada data kontrak.</div></div></td></tr>`;
+    if (countEl) countEl.textContent = 'Total: 0 kontrak';
+    if (expiringBadge) expiringBadge.style.display = 'none';
+    return;
+  }
+
+  let expiringCount = 0;
+  tbody.innerHTML = list.map((k, i) => {
+    const sisa = hitungSisaHari(k.tglAkhir);
+    const st   = getKontrakStatus(sisa);
+    if (sisa >= 0 && sisa <= 30) expiringCount++;
+
+    let namaHtml = k.nama;
+    if (sisa >= 0 && sisa <= 14) {
+      namaHtml = `<span class="blink-critical">${k.nama}</span>`;
+    } else if (sisa >= 0 && sisa <= 30) {
+      namaHtml = `<span class="blink-warn">${k.nama}</span>`;
+    }
+
+    let sisaHtml = '';
+    if (sisa < 0) {
+      sisaHtml = `<span class="badge kontrak-status-expired">${Math.abs(sisa)} hari lalu</span>`;
+    } else if (sisa <= 14) {
+      sisaHtml = `<span class="days-chip urgent blink-warn">${sisa} hari lagi</span>`;
+    } else if (sisa <= 30) {
+      sisaHtml = `<span class="days-chip warning">${sisa} hari lagi</span>`;
+    } else {
+      sisaHtml = `<span style="font-size:13px;color:#64748B">${sisa} hari</span>`;
+    }
+
+    return `<tr class="${sisa >= 0 && sisa <= 14 ? 'sp-2' : sisa >= 0 && sisa <= 30 ? 'sp-1' : ''}">
+      <td>${i+1}</td>
+      <td><div class="emp-name-wrap"><div class="emp-avatar">${k.nama.charAt(0)}</div>${namaHtml}</div></td>
+      <td><span class="badge badge-blue">${k.dept}</span></td>
+      <td><span style="font-size:12.5px">${k.jenis}</span></td>
+      <td style="font-size:12.5px">${k.tglMulai}</td>
+      <td style="font-size:12.5px;font-weight:600">${k.tglAkhir}</td>
+      <td>${sisaHtml}</td>
+      <td><span class="${st.cls}">${st.label}</span></td>
+      <td><button class="btn btn-danger btn-sm" onclick="hapusKontrak('${k.id}')">🗑️</button></td>
+    </tr>`;
+  }).join('');
+
+  if (countEl) countEl.textContent = `Total: ${list.length} kontrak`;
+  if (expiringBadge) {
+    if (expiringCount > 0) {
+      expiringBadge.textContent = `⚠️ ${expiringCount} hampir berakhir`;
+      expiringBadge.style.display = '';
+      expiringBadge.className = 'badge badge-red';
+    } else {
+      expiringBadge.style.display = 'none';
+    }
+  }
+
+  // Render page alert bar
+  renderKontrakPageAlert();
+}
+
+function filterKontrak() {
+  const q      = document.getElementById('search-kontrak').value.toLowerCase();
+  const dept   = document.getElementById('filter-kontrak-dept').value;
+  const status = document.getElementById('filter-kontrak-status').value;
+
+  const filtered = appData.kontrak.filter(k => {
+    const matchQ    = k.nama.toLowerCase().includes(q) || (k.nomor||'').toLowerCase().includes(q);
+    const matchDept = !dept || k.dept === dept;
+    const sisa      = hitungSisaHari(k.tglAkhir);
+    let   matchSt   = true;
+    if (status === 'aktif')   matchSt = sisa > 30;
+    if (status === 'warning') matchSt = sisa >= 0 && sisa <= 30;
+    if (status === 'expired') matchSt = sisa < 0;
+    return matchQ && matchDept && matchSt;
+  });
+
+  renderKontrak(filtered);
+}
+
+function renderKontrakAlert() {
+  // Dashboard alert bar
+  const bar  = document.getElementById('kontrak-alert-bar');
+  const list = document.getElementById('kontrak-alert-list');
+  if (!bar || !list) return;
+
+  const expiring = appData.kontrak.filter(k => {
+    const s = hitungSisaHari(k.tglAkhir);
+    return s >= 0 && s <= 30;
+  }).sort((a,b) => hitungSisaHari(a.tglAkhir) - hitungSisaHari(b.tglAkhir));
+
+  if (!expiring.length) { bar.classList.remove('show'); return; }
+
+  bar.classList.add('show');
+  list.innerHTML = expiring.map(k => {
+    const sisa = hitungSisaHari(k.tglAkhir);
+    const isCrit = sisa <= 14;
+    return `<div class="kontrak-alert-item">
+      <span style="font-size:18px">${isCrit ? '🔴' : '🟡'}</span>
+      <span class="${isCrit ? 'blink-critical' : 'blink-warn'}" style="font-weight:700;flex:1">${k.nama}</span>
+      <span style="font-size:12px;color:#64748B">${k.dept} · ${k.jenis}</span>
+      <span class="days-chip ${isCrit ? 'urgent' : 'warning'}">${sisa} hari lagi</span>
+      <span style="font-size:12px;color:#94A3B8">berakhir ${k.tglAkhir}</span>
+    </div>`;
+  }).join('');
+}
+
+function renderKontrakPageAlert() {
+  const bar  = document.getElementById('kontrak-page-alert-bar');
+  const list = document.getElementById('kontrak-page-alert-list');
+  if (!bar || !list) return;
+
+  const expiring = appData.kontrak.filter(k => {
+    const s = hitungSisaHari(k.tglAkhir);
+    return s >= 0 && s <= 30;
+  }).sort((a,b) => hitungSisaHari(a.tglAkhir) - hitungSisaHari(b.tglAkhir));
+
+  if (!expiring.length) { bar.classList.remove('show'); return; }
+  bar.classList.add('show');
+  list.innerHTML = expiring.map(k => {
+    const sisa = hitungSisaHari(k.tglAkhir);
+    return `<div class="kontrak-alert-item">
+      <span>${sisa <= 14 ? '🔴' : '🟡'}</span>
+      <span class="${sisa <= 14 ? 'blink-critical' : 'blink-warn'}" style="font-weight:700;flex:1">${k.nama}</span>
+      <span style="font-size:12px;color:#64748B">${k.dept}</span>
+      <span class="days-chip ${sisa <= 14 ? 'urgent' : 'warning'}">${sisa} hari lagi</span>
+      <span style="font-size:12px;color:#94A3B8">s/d ${k.tglAkhir}</span>
+    </div>`;
+  }).join('');
+}
+
+function updateBadgeKontrak() {
+  const badge = document.getElementById('badge-kontrak');
+  if (!badge) return;
+  const count = appData.kontrak.filter(k => {
+    const s = hitungSisaHari(k.tglAkhir);
+    return s >= 0 && s <= 30;
+  }).length;
+  if (count > 0) {
+    badge.textContent = count;
+    badge.style.display = '';
+    badge.style.background = '#EF4444';
+    badge.style.color = 'white';
+    badge.style.animation = 'blink-warning 1.2s ease-in-out infinite';
+  } else {
+    badge.style.display = 'none';
+  }
+}
+
+// =============================================
+//  LOGIN / LOGOUT
+// =============================================
+const LOGIN_CREDENTIALS = {
+  username: 'JAKARTA PRIMA CRANES',
+  password: 'JPC001'
+};
+
+function doLogin() {
+  const uInput = document.getElementById('login-username');
+  const pInput = document.getElementById('login-password');
+  const errMsg = document.getElementById('login-error');
+
+  const username = uInput.value.trim();
+  const password = pInput.value.trim();
+
+  uInput.classList.remove('error');
+  pInput.classList.remove('error');
+  errMsg.classList.remove('show');
+
+  if (username === LOGIN_CREDENTIALS.username && password === LOGIN_CREDENTIALS.password) {
+    const screen = document.getElementById('login-screen');
+    screen.style.transition = 'opacity 0.4s ease';
+    screen.style.opacity = '0';
+    setTimeout(() => { screen.style.display = 'none'; }, 400);
+    showToast('✅ Selamat datang, Jakarta Prima Cranes!', 'success');
+  } else {
+    uInput.classList.add('error');
+    pInput.classList.add('error');
+    errMsg.classList.add('show');
+    pInput.value = '';
+    uInput.focus();
+  }
+}
+
+function doLogout() {
+  if (!confirm('Anda yakin ingin keluar dari sistem?')) return;
+  const screen = document.getElementById('login-screen');
+  document.getElementById('login-username').value = '';
+  document.getElementById('login-password').value = '';
+  document.getElementById('login-error').classList.remove('show');
+  document.getElementById('login-username').classList.remove('error');
+  document.getElementById('login-password').classList.remove('error');
+  screen.style.opacity = '0';
+  screen.style.display = 'flex';
+  requestAnimationFrame(() => {
+    screen.style.transition = 'opacity 0.3s ease';
+    screen.style.opacity = '1';
+  });
+}
+
+function togglePass() {
+  const p = document.getElementById('login-password');
+  p.type = p.type === 'password' ? 'text' : 'password';
+}
+
+// =============================================
+//  DOWNLOAD EXCEL (CSV format, buka di Excel)
+// =============================================
+function downloadExcel(type) {
+  let rows = [];
+  let filename = '';
+  const now = new Date().toLocaleDateString('id-ID').replace(/\//g,'-');
+
+  if (type === 'karyawan') {
+    filename = 'Data_Karyawan_JPC_' + now + '.csv';
+    rows.push(['No', 'No Registrasi', 'Nama', 'Jabatan', 'Departemen']);
+    KARYAWAN_DATA.forEach((k, i) => {
+      rows.push([i+1, k.no, k.nama, k.jabatan, k.dept]);
+    });
+
+  } else if (type === 'absensi') {
+    filename = 'Absensi_Sakit_JPC_' + now + '.csv';
+    rows.push(['No', 'Nama', 'Departemen', 'Tgl Mulai', 'Tgl Selesai', 'Durasi (hari)', 'Diagnosa', 'Dokter', 'Klinik', 'No Surat']);
+    appData.absensi.forEach((d, i) => {
+      rows.push([i+1, d.nama, d.dept, d.tglMulai, d.tglSelesai, d.durasi, d.diagnosa, d.dokter, d.klinik||'-', d.noSurat||'-']);
+    });
+
+  } else if (type === 'training') {
+    filename = 'Training_JPC_' + now + '.csv';
+    rows.push(['No', 'Nama', 'Departemen', 'Jenis Training', 'Tgl Mulai', 'Tgl Selesai', 'Penyelenggara', 'Lokasi', 'Status', 'No Sertifikat', 'Expired']);
+    appData.training.forEach((d, i) => {
+      rows.push([i+1, d.nama, d.dept, d.jenis, d.tglMulai, d.tglSelesai, d.penyelenggara, d.lokasi||'-', d.status, d.sertifikat||'-', d.expired||'-']);
+    });
+
+  } else if (type === 'sp') {
+    filename = 'Surat_Peringatan_JPC_' + now + '.csv';
+    rows.push(['No', 'Nama', 'Departemen', 'Tanggal', 'Level SP', 'Alasan', 'Berlaku Sampai', 'No SP']);
+    appData.sp.forEach((d, i) => {
+      rows.push([i+1, d.nama, d.dept, d.tanggal, d.level, d.alasan, d.berlaku, d.nomor||'-']);
+    });
+
+  } else if (type === 'kontrak') {
+    filename = 'Kontrak_Kerja_JPC_' + now + '.csv';
+    rows.push(['No', 'Nama', 'Departemen', 'Jenis Kontrak', 'No Kontrak', 'Tgl Mulai', 'Tgl Berakhir', 'Sisa Hari', 'Status']);
+    appData.kontrak.forEach((d, i) => {
+      const sisa = hitungSisaHari(d.tglAkhir);
+      const st   = getKontrakStatus(sisa).label;
+      rows.push([i+1, d.nama, d.dept, d.jenis, d.nomor||'-', d.tglMulai, d.tglAkhir, sisa < 0 ? 'Berakhir' : sisa + ' hari', st]);
+    });
+  }
+
+  if (rows.length <= 1) {
+    showToast('⚠️ Belum ada data untuk didownload!', 'error'); return;
+  }
+
+  // Konversi ke CSV dengan BOM agar Excel baca UTF-8 dengan benar
+  const bom = '\uFEFF';
+  const csv = bom + rows.map(r =>
+    r.map(cell => {
+      const val = String(cell ?? '').replace(/"/g, '""');
+      return val.includes(',') || val.includes('"') || val.includes('\n') ? '"' + val + '"' : val;
+    }).join(',')
+  ).join('\n');
+
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+
+  showToast('📥 File ' + filename + ' berhasil didownload!', 'success');
+}
+
 // =============================================
 //  KELOLA KARYAWAN (Tambah & Hapus)
 // =============================================
@@ -2649,6 +3753,8 @@ function init() {
   updateGSStatus();
   renderCharts();
   renderKaryawan();
+  renderKontrakAlert();
+  updateBadgeKontrak();
 
   // Load saved settings to fields
   if (appData.settings.gsSheetId) document.getElementById('gs-sheet-id').value = appData.settings.gsSheetId;
@@ -2657,7 +3763,8 @@ function init() {
 
   // Set default dates to today
   const today = new Date().toISOString().split('T')[0];
-  ['absensi-tgl-mulai','absensi-tgl-selesai','training-tgl-mulai','training-tgl-selesai','sp-tanggal'].forEach(id => {
+  ['absensi-tgl-mulai','absensi-tgl-selesai','training-tgl-mulai','training-tgl-selesai','sp-tanggal',
+   'kontrak-tgl-mulai','kontrak-tgl-berakhir'].forEach(id => {
     if (document.getElementById(id)) document.getElementById(id).value = today;
   });
 }
