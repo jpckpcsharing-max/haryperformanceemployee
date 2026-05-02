@@ -2194,24 +2194,42 @@ const KARYAWAN_DATA = [
 ];
 
 // APP STATE
+// ⚙️ KONFIGURASI GOOGLE SHEETS — ditanam langsung di file
+const GS_SHEET_ID_DEFAULT   = '1j8l9CPjYAuok1dkJtrYNWoJn5tINPD2SbM8XpKqFgQg';
+const GS_SCRIPT_URL_DEFAULT = 'https://script.google.com/macros/s/AKfycbydsDMnVqnJiWCJo2_eglVxui9VXPp9Uis0MB0ieYkfM4tettuRR7NvzAbD0aOksNw/exec';
+
 let appData = {
   absensi: [],
   training: [],
   sp: [],
   kontrak: [],
   settings: {
-    gsSheetId: '',
-    gsScriptUrl: '',
+    gsSheetId: GS_SHEET_ID_DEFAULT,
+    gsScriptUrl: GS_SCRIPT_URL_DEFAULT,
     anthropicKey: ''
   }
 };
 
-// LOAD FROM LOCALSTORAGE (demo mode)
+// LOAD FROM LOCALSTORAGE
 function loadData() {
   try {
     const saved = localStorage.getItem('hrd_data');
-    if (saved) { appData = JSON.parse(saved); }
-  } catch(e) {}
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      // Merge data, tapi pastikan settings selalu ada dan tidak kehilangan default
+      appData = parsed;
+      if (!appData.settings) {
+        appData.settings = {};
+      }
+      // Selalu pakai nilai hardcoded jika field kosong/tidak ada
+      if (!appData.settings.gsSheetId)   appData.settings.gsSheetId   = GS_SHEET_ID_DEFAULT;
+      if (!appData.settings.gsScriptUrl) appData.settings.gsScriptUrl = GS_SCRIPT_URL_DEFAULT;
+    }
+  } catch(e) {
+    // Jika localStorage rusak, reset ke default
+    appData.settings.gsSheetId   = GS_SHEET_ID_DEFAULT;
+    appData.settings.gsScriptUrl = GS_SCRIPT_URL_DEFAULT;
+  }
 }
 
 function saveData() {
